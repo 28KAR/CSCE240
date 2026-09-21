@@ -11,9 +11,11 @@ using std::max;
 
 int ToClosestPrime(int n) {
 
+  // checks base number
   if (isPrime(n))
     return 0;
   
+  // Scans above and below for closest prime
   for (int i = 1; true ; i++) {
     if (isPrime(n + i))
       return i;
@@ -43,10 +45,13 @@ bool isPrime(int n) {
 
 void PrintPrimesBetween(int lowerBound, int upperBound, bool inputsIncluded) {
 
+  // prints first value if prime
   int primeFound = false;
   if (inputsIncluded && isPrime(lowerBound)) {
     cout << lowerBound; primeFound = true;
   }
+
+  // checks and prints each prime value, after first one found also prints ", "
   for (int i = lowerBound + 1; i < upperBound; i++)
     if (isPrime(i))
       if (primeFound) 
@@ -54,6 +59,8 @@ void PrintPrimesBetween(int lowerBound, int upperBound, bool inputsIncluded) {
       else {
         cout << i; primeFound = true;
       }
+
+  // prints last value if prime
   if (inputsIncluded && isPrime(upperBound))
     if (primeFound) 
       cout << ", "<< upperBound;
@@ -64,15 +71,18 @@ void PrintPrimesBetween(int lowerBound, int upperBound, bool inputsIncluded) {
 
 int LargestPrimeSequence(int arg) {
 
+  //  Returns self if prime, and -1 if single diget non-prime number
   if (isPrime(arg))
     return arg;
   if (arg % 10 == arg)
     return -1;
 
+  // Splits problem into one didget taken from right and one didget from the left
   int leftHalf = arg / 10;
   int rightHalf =
     (arg %static_cast<int>(pow(10, static_cast<int>(log10(arg)))));
 
+  // Recurses until prime number or no prime number is found
   return (max(LargestPrimeSequence(leftHalf), LargestPrimeSequence(rightHalf)));
 
 }
@@ -83,6 +93,7 @@ void PrintAsDollarsAndCents(int arg) {
 
 }
 
+//  Class for Bills and Coins, allows loops to be cleanly manipulated
 class Bills {
   public:
     int value;
