@@ -7,8 +7,15 @@ using std::cin;
 #include"./program2functions.h"
 
 int main() {
-  int twenties = 1, tens = 1, fives = 2, ones = 12, quarters = 0, dimes = 3,
-      nickels = 0, pennies = 0;
+  //  Cost = $17.82
+  int twenties = 1,
+    tens = 1,
+    fives = 2,
+    ones = 12,
+    quarters = 0,
+    dimes = 3,
+    nickels = 0,
+    pennies = 0;
   bool returned_value = MakePurchase(1782, twenties, tens, fives, ones,
                                      quarters, dimes, nickels, pennies);
   if ( returned_value && twenties == 0 && tens == 1 && fives == 2 && ones == 14
@@ -35,6 +42,7 @@ int main() {
          << ", expected 3" << endl;
   }
 
+  //  Cost = $8.07
   twenties = 3;
   tens = 4;
   fives = 5;
@@ -69,6 +77,7 @@ int main() {
          << ", expected 4" << endl;
   }
 
+  //  Cost = 8.07
   twenties = 0;
   tens = 0;
   fives = 1;
@@ -103,6 +112,7 @@ int main() {
          << ", expected 9" << endl;
   }
 
+  // Cost = $64.95
   twenties = 5;
   tens = 4;
   fives = 3;
@@ -137,6 +147,7 @@ int main() {
          << ", expected 0" << endl;
   }
 
+  // Cost = 64.95
   twenties = 2;
   tens = 1;
   fives = 0;
