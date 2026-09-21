@@ -34,7 +34,6 @@ bool isPrime(int n) {
     return true;
 
   // Checks for any factors of n
-  int cnt = 0;
   for (int i=3; i*i <= n; i += 2)
     if (n % i == 0)
       return false;
@@ -53,19 +52,21 @@ void PrintPrimesBetween(int lowerBound, int upperBound, bool inputsIncluded) {
 
   // checks and prints each prime value, after first one found also prints ", "
   for (int i = lowerBound + 1; i < upperBound; i++)
-    if (isPrime(i))
+    if (isPrime(i)) {
       if (primeFound) 
         cout << ", "<< i;
       else {
         cout << i; primeFound = true;
       }
+    }
 
   // prints last value if prime
-  if (inputsIncluded && isPrime(upperBound))
+  if (inputsIncluded && isPrime(upperBound)) {
     if (primeFound) 
       cout << ", "<< upperBound;
     else
       cout << upperBound;
+  }
     
 }
 
