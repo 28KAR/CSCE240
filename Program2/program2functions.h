@@ -1,5 +1,5 @@
 //  -------------------------------------  //
-//  Copyright Katherine Asher Rogers 2025  //
+//  Copyright Katherine Asher Rogers 2026  //
 //  -------------------------------------  //
 
 #ifndef _MY_FUNCTIONS_H_
