@@ -2,10 +2,12 @@
 //  Copyright Katherine Asher Rogers 2026  //
 //  -------------------------------------  //
 
-#include"program3functions.h"
-#include<iostream>
-#include <cstring>
-using std::cout;
+#include "program3functions.h"
+#include "p3compares.h"
+#include <iostream>
+using std::equal;
+using std::begin;
+using std::end;
 
 //  Removes all instances of an integer, replacing them with -999,
 //  and pushing them to the back of the array.
@@ -64,58 +66,95 @@ void ShiftArray(int* array, int size, int numMove) {
 //  this does not require them to be in the same order.
 bool IsAnagram(char const* a1, char const* a2, bool caseSensitive) {
 
-  //  Converts constants into sortable arrays
-  char* array1 = strdup(a1);
-  char* array2 = strdup(a2);
+  //  Makes character counting arrays
+  int arr1[50] = {0}, arr2[50] = {0};
 
-  //  Converts chars to lowercase if not case sensitive
-  if (!caseSensitive) {
-    for (int i = 0; array1[i] != '\0'; i++) {
-      if (array1[i] >= 'A' && array1[i] <= 'Z')
-        array1[i] += 32;
-      if (array2[i] >= 'A' && array2[i] <= 'Z')
-        array2[i] += 32;
+  //  Counts each instance of each character in both strings
+  if (caseSensitive) {
+    for (int i = 0; a1[i] != '\0'; i++) {
+      if (a1[i] >= 65 && a1[i] <= 90)
+        arr1[a1[i] - 65]++;
+      if (a1[i] >= 97 && a1[i] <= 122)
+        arr1[a1[i] - 72]++;
+    }
+    for (int i = 0; a2[i] != '\0'; i++) {
+      if (a2[i] >= 65 && a2[i] <= 90)
+        arr2[a2[i] - 65]++;
+      if (a2[i] >= 97 && a2[i] <= 122)
+        arr2[a2[i] - 72]++;
+    }
+  } else {
+    for (int i = 0; a1[i] != '\0'; i++) {
+      if (a1[i] >= 65 && a1[i] <= 90)
+        arr1[a1[i] - 65]++;
+      if (a1[i] >= 97 && a1[i] <= 122)
+        arr1[a1[i] - 97]++;
+    }
+    for (int i = 0; a2[i] != '\0'; i++) {
+      if (a2[i] >= 65 && a2[i] <= 90)
+        arr2[a2[i] - 65]++;
+      if (a2[i] >= 97 && a2[i] <= 122)
+        arr2[a2[i] - 97]++;
     }
   }
 
-  //  Loops until both arrays are sorted
-  bool exit = false;
-  while (!exit) {
-    exit = true;
-    for (int i = 0; array1[i+1] != '\0'; i++) {
-      if (array1[i] > array1[i + 1]) {
-        char temp = array1[i];
-        array1[i] = array1[i + 1];
-        array1[i + 1] = temp;
-      }
-      if (array2[i] > array2[i + 1]) {
-        char temp = array2[i];
-        array2[i] = array2[i + 1];
-        array2[i + 1] = temp;
-      }
-      cout << array1 << ", " << array2 << "\n";
-    }
-    for (int i = 0; array1[i+1] != '\0'; i++) {
-      if (array1[i] > array1[i + 1] || array2[i] > array2[i + 1]) {
-        exit = false;
-      }
-    }
-  }
-
-  return strcmp(array1, array2) == 0;
+  //  Compares final character counts
+  return equal(begin(arr1), end(arr1), begin(arr2));
 
 }
-
 //  Replaces a specified array with two characters,
 //  returns false and leaves unchanged if array too small.
-bool Replace1With2(char* array, int size, char replaceA, char replaceB) {
+bool Replace1With2(char* array, int size, char find, char replaceA, char replaceB) {
+
+  //  Tests if the size is large enough for the replacement
+  int replaceCount = 0;
+  int emptyCount = 0;
+
+  for (int i = 0; i < size; i++) {
+    if (array[i] == find) {
+      replaceCount++;
+    }
+    if (array[i] == '\0') {
+      emptyCount++;
+    }
+  }
+  
+  if (replaceCount >= emptyCount)
+    return false;
+ 
+  //  Replaces the character, shifts the remaining array, then replaces the second character
+  for (int i = 0; i < size; i++) {
+    if (array[i] == find) {
+      array[i] = replaceA;
+      int temp = array[i + 1];
+      for (int j = i+2; j < (size - 1); j++) {
+        int temp2 = array[j];
+        array[j] = temp;
+        temp = temp2;
+      }
+      array[i + 1] = replaceB;
+    }
+  }
 
   return true;
 
 }
 
 //  Swaps the values of the rows and columns.
-void SwapRowsAndColumns(int** array, int rows, int cols) {
+void SwapRowsAndColumns(int array[kSquareSize][kSquareSize]) {
+
+  int temp[kSquareSize][kSquareSize];
+
+  for (int i = 0; i < kSquareSize; i++) {  
+    for (int j = 0; j < kSquareSize; j++) {
+      temp[j][i] = array[i][j];
+    }
+  }
+  for (int i = 0; i < kSquareSize; i++) {  
+    for (int j = 0; j < kSquareSize; j++) {
+      array[i][j] = temp[i][j];
+    }
+  }
 
   return;
 
