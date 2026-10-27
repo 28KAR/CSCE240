@@ -1,0 +1,32 @@
+2 feet
+yes
+3 feet
+yes
+4 feet
+yes
+5 feet
+yes
+6 feet
+yes
+2 meters
+yes
+3 meters
+yes
+100 centimeters
+yes
+1000 centimeters
+yes
+250 centimeters
+yes
+10 inches
+yes
+18 inches
+yes
+37 inches
+yes
+80 inches
+yes
+2.5 feet
+yes
+1.8 meters
+no
