@@ -29,8 +29,32 @@ int main() {
   cin >> another;
 
   // continue to get heights while the user enters "yes"
+  while (another == "yes") {
+    ++current_position;
 
-  SortHeights(ptr, current_position);
+    // if the array is full, makes a new array of double the size
+    if (current_position >= current_size - 1) {
+      Height * temp = new Height[current_size * 2];
+      for (int i = 0; i < current_size; ++i)
+        temp[i] = ptr[i];
+      delete [] ptr;
+      ptr = temp;
+      current_size *= 2;
+    }
+
+    // user enters a height value and unit (DON'T prompt/ask for this)
+    cin >> height_value >> height_unit;
+
+    ptr[current_position].SetValue(height_value);
+    ptr[current_position].SetUnits(height_unit);
+
+    // user enters "yes" if they'd like to enter another height
+    // (DON'T prompt/ask for this)
+    cin >> another;
+  }
+
+  // ends when the user enters something other than "yes"
+  SortHeights(ptr, ++current_position);
 
   for ( int i = 0; i < current_position; ++i )
     cout << ptr[i] << (i < current_position - 1?", ":"");
