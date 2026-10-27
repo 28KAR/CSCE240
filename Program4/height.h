@@ -1,6 +1,7 @@
 //  -------------------------------------  //
 //  Copyright Katherine Asher Rogers 2026  //
 //  -------------------------------------  //
+
 #ifndef _HEIGHT_H_
 #define _HEIGHT_H_
 
