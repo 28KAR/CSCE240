@@ -1,0 +1,32 @@
+// Copyright 2026 CSCE240 __________
+// definition of the Question base class
+#ifndef QUESTION_H_
+#define QUESTION_H_
+
+#include<string>
+using std::string;
+
+namespace csce240_program5 {
+
+class Question {
+ public:
+  // do not edit the following three functions
+  explicit Question(string q = "?") { question_ = q; }
+  void SetQuestion(string q) { question_ = q; }
+  string GetQuestion() const { return question_; }
+  
+  // Add a virtual destructor
+
+  // Add a pure virtual Print function that takes a bool parameter,
+  // with a default argument of false, that determines whether or
+  // not the correct answer displays when the question is printed
+
+
+  // do not edit the private section of the class
+ private:
+  string question_;
+};
+
+}  // namespace csce240_program5
+
+#endif  // QUESTION_H_
